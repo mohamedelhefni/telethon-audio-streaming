@@ -1,0 +1,32 @@
+import json
+def getFiles(files):
+        all_files = []
+        for file in files:
+                attributes = file.media.document.attributes
+                # File
+                if len(attributes) == 1:
+                        fileName = file.media.document.attributes[0].file_name
+                        # print(fileName)
+                        # Image Format
+                if len(attributes) == 2:
+                        fileName = file.media.document.attributes[1].file_name
+                        # print(fileName)
+                        # download file
+
+                new_file = {
+                        "id": file.id,
+                        "channel_id": file.peer_id.channel_id,
+                        "name": fileName,
+                        "type": file.media.document.mime_type,
+                        "size": file.media.document.size,
+                        "views": file.views,
+                        "time": {
+                        "duration": file.media.document.attributes[0].duration,
+                        "bitsPerSecond": file.media.document.size / file.media.document.attributes[0].duration
+                        }
+                }
+                if new_file['type'] == "audio/mpeg":
+                        all_files.append(new_file)
+        return json.dumps(all_files)
+
+
