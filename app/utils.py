@@ -13,6 +13,7 @@ def getFiles(files):
                         "id": file.id,
                         "channel_id": file.peer_id.channel_id,
                         "name": fileName,
+                        "description":  file.message,
                         "type": file.media.document.mime_type,
                         "size": file.media.document.size,
                         "views": file.views,

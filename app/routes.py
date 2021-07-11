@@ -9,10 +9,18 @@ from telethon.tl.types import InputMessagesFilterPhotos, InputMessagesFilterDocu
 @app.route("/channel/<string:channel>/page/<int:page>")
 async def getChannelAudioFiles(channel, page=0):
         offset = page if page > 1 else 0
-        limit = 99
+        limit = 36     
         files = await client.get_messages(channel, limit=limit,add_offset=(offset  * limit), filter=InputMessagesFilterMusic)
         return json.dumps({"files": getFiles(files), "pagination":  paginate(files.total, page,  limit) }) 
 
+
+@app.route("/channel/<string:channel>/<string:query>")
+async def search(channel, query):
+        files = await client.get_messages(channel,limit=1000,search=query,filter=InputMessagesFilterMusic)
+        return json.dumps({
+                        "files": getFiles(files),
+                        "total": files.total
+                })
 
 
 @app.route('/stream/<string:channel>/<int:id>')
@@ -35,7 +43,7 @@ async def downloadChannelFile(channel, id):
                 file = await client.get_messages(channel, ids=id, filter=InputMessagesFilterMusic)
                 @stream_with_context
                 async def download(file):
-                        global client
+                        global client 
                         async for chunk in client.iter_download(file, offset=int(offset)):
                                 yield chunk
 
