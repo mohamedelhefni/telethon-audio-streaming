@@ -1,5 +1,5 @@
 import json, math
-def getFiles(files):
+def get_files(files):
         all_files = []
         for file in files:
                 attributes = file.media.document.attributes
