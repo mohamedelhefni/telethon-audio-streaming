@@ -17,6 +17,9 @@
     >
       <Song v-for="song in $store.state.songs" :key="song.id" :song="song" />
     </div>
+    <div v-if="$store.state.endOfFiles" class="text-center text-gray">
+      There were no more files 
+    </div>
   </div>
 </template>
 

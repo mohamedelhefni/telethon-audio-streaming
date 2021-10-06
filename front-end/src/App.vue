@@ -17,8 +17,7 @@
       Telegram audio streaming is a service that allows you to get telegram
       channel audio files and listen to it or download it by putting the
       username in the form above for example: <br />
-      <b>Arabic: </b> audiobooking1 or @audiobooking1, drsulafa, all_podcast,
-      Arabicpodcasts <br />
+      <b>Arabic: </b> drsulafa, all_podcast, Arabicpodcasts <br />
       <b>English: </b> podcast_english_listening, amazonebook, ingliztiliuzz,
       English_podcasts
     </div>
@@ -52,7 +51,22 @@ export default {
     SongPlayer,
     Loading,
   },
-  methods: {},
+  methods: {
+    getNextSongs() {
+      window.onscroll = () => {
+        let bottomOfWindow =
+          document.documentElement.scrollTop + window.innerHeight ===
+          document.documentElement.offsetHeight;
+        if (bottomOfWindow) {
+          this.$store.dispatch('getNextSongs')
+
+        }
+      };
+    },
+  },
+  mounted() {
+    this.getNextSongs()
+  },
 };
 </script>
 

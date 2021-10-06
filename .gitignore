@@ -1,3 +1,4 @@
 config.json
 *.session
 env
+node_modules
