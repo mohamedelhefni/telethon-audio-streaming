@@ -1,5 +1,6 @@
 <template>
   <div class="audiolist">
+    <p v-if="$store.state.songs.length " class="text-gray text-left my-3 ml-3">Audio Files: <b>{{ $store.state.pagination.total }}</b> , Pages:  <b> {{ $store.state.pagination.totalPages }} </b> </p>
     <div
       class="
         songs
