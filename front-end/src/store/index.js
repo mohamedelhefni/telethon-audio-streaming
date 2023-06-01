@@ -36,7 +36,7 @@ export default createStore({
       state.error = false;
       axios
         .get(
-          `https://telegram-streaming.herokuapp.com/channel/${channel}/page/1`
+          `https://telegram-streaming.onrender.com/channel/${channel}/page/1`
         )
         .then((response) => {
           state.channel = channel;
@@ -53,7 +53,7 @@ export default createStore({
         state.endOfFiles = false;
         axios
           .get(
-            `https://telegram-streaming.herokuapp.com/channel/${state.channel}/page/${state.pagination.next}`
+            `https://telegram-streaming.onrender.com/channel/${state.channel}/page/${state.pagination.next}`
           )
           .then((response) => {
             commit("pushSongs", response.data)
@@ -64,7 +64,7 @@ export default createStore({
       console.log("get next songs from store");
     },
     playSong({ commit, state }, song) {
-      state.currentUrl = `https://telegram-streaming.herokuapp.com/stream/${state.channel}/${song.id}`;
+      state.currentUrl = `https://telegram-streaming.onrender.com/stream/${state.channel}/${song.id}`;
       commit("playSong", song);
     },
     changeOffset({ commit }, url) {

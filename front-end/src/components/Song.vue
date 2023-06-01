@@ -79,7 +79,7 @@
       </div>
       <a
         v-bind:href="
-          'https://telegram-streaming.herokuapp.com/download/' +
+          'https://telegram-streaming.onrender.com/download/' +
           $store.state.channel +
           '/' +
           song.id

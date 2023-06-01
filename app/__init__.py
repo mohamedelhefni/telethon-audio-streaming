@@ -1,16 +1,12 @@
-import json
+import json,os
 import hypercorn.asyncio
 from quart import Quart 
 from quart_cors import cors
 from telethon import TelegramClient
 
-with open('config.json') as config_file:
-        data = json.load(config_file)
-        api_id = data['api_id']
-        api_hash = data['api_hash']
-        session = data['session']
-
-
+api_id = os.environ["API_ID"]
+api_hash = os.environ["API_HASH"]
+session = os.environ["SESSION"]
 client = TelegramClient(session, api_id, api_hash)
 
 quart_cfg = hypercorn.Config()

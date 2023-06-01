@@ -107,7 +107,7 @@ export default {
     changeProgress(progress) {
       this.currentTime = progress;
       this.offset = Math.round(progress * this.song.time.bitsPerSecond);
-      this.currentSrc = `https://telegram-streaming.herokuapp.com/stream/${store.state.channel}/${this.song.id}?offset=${this.offset}`;
+      this.currentSrc = `https://telegram-streaming.onrender.com/stream/${store.state.channel}/${this.song.id}?offset=${this.offset}`;
       store.dispatch("changeOffset", this.currentSrc);
       this.pause();
     },
@@ -115,7 +115,7 @@ export default {
     initSong(song) {
       store.commit(
         "changeUrl",
-        `https://telegram-streaming.herokuapp.com/stream/${store.state.channel}/${song.id}`
+        `https://telegram-streaming.onrender.com/stream/${store.state.channel}/${song.id}`
       );
       store.commit("playSong", song);
       this.currentTime = 0;

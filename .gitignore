@@ -2,3 +2,5 @@ config.json
 *.session
 env
 node_modules
+.env
+__pycache__
